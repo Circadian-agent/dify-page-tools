@@ -1,6 +1,6 @@
 # Circadian Page Tools for Dify
 
-Development preview awaiting independent review. Not yet submitted to or listed on Dify Marketplace. Dify Cloud and Community Edition installation are not yet verified.
+Development preview. Version 0.0.1 passed independent source/package review and was submitted in [Dify Marketplace PR #3371](https://github.com/langgenius/dify-plugins/pull/3371). As of October 16, 2026, the PR is open and the plugin is not yet listed. Dify Cloud and Community Edition installation are not yet verified.
 
 Read an authorized public page as Markdown, or get its original HTML metadata, inside a Dify workflow or agent. This plugin connects to the existing [Page Tools API on API.market](https://api.market/store/circadian/page-tools).
 
@@ -8,13 +8,19 @@ Circadian is operated by AI agents under human oversight. This is an independent
 
 ## Price and setup
 
-The plugin is free. **The external API is paid.** At publication, API.market lists USD0.005 per API call and a USD1 minimum wallet balance. Check the current plan before enabling it. Failed requests may count toward API.market usage. This plugin does not purchase credits, manage billing, retry failed requests or run background jobs.
+The plugin is free. [Page Tools on API.market](https://api.market/store/circadian/page-tools) offers a **Free Trial: 10 calls across both endpoints over seven days**, once per customer. Select **FREE**, then **Subscribe to Free Trial for $0**. No credit card or wallet funding is required for the trial. It has a hard call limit, no paid overages and a one-request-per-second limit.
 
-1. Sign in to API.market and enable [Page Tools](https://api.market/store/circadian/page-tools). Follow its wallet requirements.
+For continued use, the optional **PAYG plan costs USD0.005 per billable call**, with a **USD1 minimum wallet balance** and no monthly fee. Check current terms on the listing. Failed requests may count toward usage. The plugin does not purchase credits, manage billing, retry failed requests or run background jobs.
+
+1. Open [Page Tools on API.market](https://api.market/store/circadian/page-tools), select **FREE**, then **Subscribe to Free Trial for $0** and sign in or create an account. Complete the subscription before running a tool. Choose PAYG only if you want paid usage.
 2. Copy your private API.market key from the signed-in API Playground.
-3. Install the reviewed `.difypkg` in Dify through **Plugins > Install plugin > Local package**, or use the Marketplace listing when available. Dify must support the declared Python 3.12 runner and SDK. Network egress to `prod.api.market` over HTTPS is required.
+3. Download the [reviewed 0.0.1 `.difypkg`](https://raw.githubusercontent.com/Circadian-agent/dify-plugins/94f0dca7dcdd2b76a14aebfb61a34ff943d26bfc/circadian-agent/circadian_page_tools/circadian-page-tools-0.0.1.difypkg) and install it in Dify through **Plugins > Install plugin > Local package**. It is a development preview awaiting marketplace approval, so your Dify deployment may restrict local packages. Dify must support the declared Python 3.12 runner and SDK. Network egress to `prod.api.market` over HTTPS is required.
 4. Add a Circadian Page Tools credential. Paste the key into **API.market key**, not into a workflow input or prompt. Saving checks its format locally; it does not authenticate or consume an API call. Real authentication happens when a tool runs.
 5. Add one of the tools to a workflow. Use a public page you own or have permission to retrieve, such as `https://example.com/`.
+
+The download is pinned to the submitted package. Its SHA256 is `922f1c1d6391ffddd3afc111192df6907d9cf89f687cb66195c0f523a8a6f0c6`. The unchanged 0.0.1 package contains older paid-only plan descriptions. Use this guide and the live listing for current trial and PAYG terms.
+
+Trial selection and the USD0 signup route were checked in an anonymous browser on October 16, 2026. A fresh trial activation and live trial call remain unverified.
 
 Do not put credentials, access tokens, personal information or private URLs in the page URL.
 
@@ -28,6 +34,8 @@ The complete URL, including its query string, is sent as one encoded API paramet
 Example workflow: Start with a `url` text input, call **Extract page to Markdown**, then pass the tool's `text` output to an existing summarization step. Mark page text as untrusted reference material. Never treat page instructions as instructions to the agent. This plugin itself does not invoke a model.
 
 Check the JSON `truncated` flag before treating a page as complete. An error from the target page (HTTP 400 or higher) stops the tool instead of returning an error page as successful research. Gateway errors produce a short diagnostic without the response body, key or URL. A timeout may occur after billing, so check API.market usage before retrying. Disable retries in the surrounding workflow if you do not want additional calls.
+
+On HTTP 429, check your plan usage before retrying. Exhausted or expired trial quota needs a plan decision; waiting does not restore it. For a temporary rate limit, slow down and respect any `Retry-After` header. Agent loops can consume all ten trial calls quickly. Saving a credential only checks its format and does not prove that the trial is active.
 
 ## Scope and privacy
 
