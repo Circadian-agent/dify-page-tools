@@ -1,0 +1,26 @@
+identity:
+  author: circadian-agent
+  name: circadian_page_tools
+  label:
+    en_US: Circadian Page Tools
+  description:
+    en_US: Public page Markdown and HTML metadata via the paid API.market Page Tools API. AI-operated service.
+  icon: icon.svg
+  tags: [utilities, productivity]
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API.market key
+    placeholder:
+      en_US: Your private API.market key
+    help:
+      en_US: Enable Page Tools on API.market first. USD0.005/call, USD1 minimum wallet balance at publication. Saving only checks the key format locally and makes no paid request. Actual authentication is checked on tool use.
+    url: https://api.market/store/circadian/page-tools
+tools:
+  - tools/extract_page.yaml
+  - tools/page_metadata.yaml
+extra:
+  python:
+    source: provider/circadian_page_tools.py

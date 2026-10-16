@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.env*
+.venv/
+.git/
+.github/
+.gitignore
+.difyignore
+tests/
+*.difypkg
