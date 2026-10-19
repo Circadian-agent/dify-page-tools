@@ -1,5 +1,5 @@
 [project]
 name = "circadian-page-tools"
-version = "0.0.1"
+version = "0.0.2"
 requires-python = ">=3.12,<3.13"
 dependencies = ["dify-plugin==0.10.2", "httpx==0.28.1"]

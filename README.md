@@ -1,6 +1,6 @@
 # Circadian Page Tools for Dify
 
-Development preview. Version 0.0.1 passed independent source/package review and was submitted in [Dify Marketplace PR #3371](https://github.com/langgenius/dify-plugins/pull/3371). As of October 16, 2026, the PR is open and the plugin is not yet listed. Dify Cloud and Community Edition installation are not yet verified.
+Available on [Dify Marketplace](https://marketplace.dify.ai/plugin/circadian-agent/circadian_page_tools). Version 0.0.1 was published on October 19, 2026 after [PR #3371](https://github.com/langgenius/dify-plugins/pull/3371) was merged. A full Dify Cloud or Community Edition installation has not been verified by Circadian.
 
 Read an authorized public page as Markdown, or get its original HTML metadata, inside a Dify workflow or agent. This plugin connects to the existing [Page Tools API on API.market](https://api.market/store/circadian/page-tools).
 
@@ -14,13 +14,11 @@ For continued use, the optional **PAYG plan costs USD0.005 per billable call**, 
 
 1. Open [Page Tools on API.market](https://api.market/store/circadian/page-tools), select **FREE**, then **Subscribe to Free Trial for $0** and sign in or create an account. Complete the subscription before running a tool. Choose PAYG only if you want paid usage.
 2. Copy your private API.market key from the signed-in API Playground.
-3. Download the [reviewed 0.0.1 `.difypkg`](https://raw.githubusercontent.com/Circadian-agent/dify-plugins/94f0dca7dcdd2b76a14aebfb61a34ff943d26bfc/circadian-agent/circadian_page_tools/circadian-page-tools-0.0.1.difypkg) and install it in Dify through **Plugins > Install plugin > Local package**. It is a development preview awaiting marketplace approval, so your Dify deployment may restrict local packages. Dify must support the declared Python 3.12 runner and SDK. Network egress to `prod.api.market` over HTTPS is required.
+3. Open [Circadian Page Tools on Dify Marketplace](https://marketplace.dify.ai/plugin/circadian-agent/circadian_page_tools) and select **Install** for Dify Cloud. For Community Edition, find **Circadian Page Tools** through Marketplace in your own Dify workspace and install it there. Dify must support the declared Python 3.12 runner and SDK. Network egress to `prod.api.market` over HTTPS is required.
 4. Add a Circadian Page Tools credential. Paste the key into **API.market key**, not into a workflow input or prompt. Saving checks its format locally; it does not authenticate or consume an API call. Real authentication happens when a tool runs.
 5. Add one of the tools to a workflow. Use a public page you own or have permission to retrieve, such as `https://example.com/`.
 
-The download is pinned to the submitted package. Its SHA256 is `922f1c1d6391ffddd3afc111192df6907d9cf89f687cb66195c0f523a8a6f0c6`. The unchanged 0.0.1 package contains older paid-only plan descriptions. Use this guide and the live listing for current trial and PAYG terms.
-
-Trial selection and the USD0 signup route were checked in an anonymous browser on October 16, 2026. A fresh trial activation and live trial call remain unverified.
+The Marketplace listing, its Dify Cloud Install link, trial selection and the free-trial sign-in prompt were checked in an anonymous browser on October 19, 2026. A fresh trial activation, live trial call and full Dify Cloud or Community Edition installation remain unverified.
 
 Do not put credentials, access tokens, personal information or private URLs in the page URL.
 
@@ -45,15 +43,19 @@ The client rejects credentials in URLs, local IP literals, common local hostname
 
 [PRIVACY.md](PRIVACY.md) explains data flow and service logging boundaries. Do not use this plugin for sensitive data.
 
+## Changes in 0.0.2
+
+Updated the bundled setup guide and tool descriptions to link the published Marketplace listing and explain the Free Trial and optional PAYG plan. No runtime, dependency or tool-schema changes. No migration is required.
+
 ## Source and development
 
-Source: [packages/dify-page-tools](https://github.com/Circadian-agent/dify-page-tools). Python 3.12, `dify-plugin==0.10.2`, `httpx==0.28.1`; runtime dependencies are pinned in `requirements.txt`.
+Source: [Circadian-agent/dify-page-tools](https://github.com/Circadian-agent/dify-page-tools). Python 3.12, `dify-plugin==0.10.2`, `httpx==0.28.1`; runtime dependencies are pinned in `requirements.txt`.
 
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install --only-binary=:all: -r requirements.txt
 .venv/bin/python -m unittest discover -s tests -v
-dify plugin package . -o /tmp/circadian-page-tools-0.0.1.difypkg
+dify plugin package . -o /tmp/circadian-page-tools-0.0.2.difypkg
 ```
 
 Tests use the real Dify SDK and an intercepted HTTP transport. They make no network requests or paid calls. Marketplace validation and a live execution check are separate from these tests. The package excludes tests, local state and credentials.

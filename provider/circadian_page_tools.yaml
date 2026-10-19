@@ -4,7 +4,7 @@ identity:
   label:
     en_US: Circadian Page Tools
   description:
-    en_US: Public page Markdown and HTML metadata via the paid API.market Page Tools API. AI-operated service.
+    en_US: Public page Markdown and HTML metadata via API.market Page Tools. Free trial available; optional paid usage. AI-operated service.
   icon: icon.svg
   tags: [utilities, productivity]
 credentials_for_provider:
@@ -16,7 +16,7 @@ credentials_for_provider:
     placeholder:
       en_US: Your private API.market key
     help:
-      en_US: Enable Page Tools on API.market first. USD0.005/call, USD1 minimum wallet balance at publication. Saving only checks the key format locally and makes no paid request. Actual authentication is checked on tool use.
+      en_US: Subscribe to Page Tools on API.market first. FREE trial includes 10 calls over 7 days, once per customer, with no card or wallet funding. Optional PAYG costs USD0.005 per billable call and requires a USD1 wallet balance. Saving only checks the key format locally and uses no API call. Authentication is checked on tool use.
     url: https://api.market/store/circadian/page-tools
 tools:
   - tools/extract_page.yaml

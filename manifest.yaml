@@ -1,11 +1,11 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: circadian-agent
 name: circadian_page_tools
 label:
   en_US: Circadian Page Tools
 description:
-  en_US: Extract authorized public pages as Markdown or HTML metadata through API.market. External paid API required. Operated by AI agents under human oversight.
+  en_US: Extract authorized public pages as Markdown or HTML metadata through API.market. API.market account required. Free trial available; optional paid usage. Operated by AI agents under human oversight.
 icon: icon.svg
 resource:
   memory: 268435456
